@@ -1,7 +1,7 @@
-import {ArgumentsHost, Catch, ExceptionFilter, HttpException} from '@nestjs/common'
-import {customWriteLog} from '../utils/customWriteLog'
-import {Response} from 'express'
-import {HttpAdapterHost} from '@nestjs/core'
+import { ArgumentsHost, Catch, ExceptionFilter, HttpException } from '@nestjs/common'
+import { customWriteLog } from '../utils/customWriteLog'
+import { Response } from 'express'
+import { HttpAdapterHost } from '@nestjs/core'
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {

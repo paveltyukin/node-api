@@ -1,12 +1,12 @@
-import {HttpAdapterHost, NestFactory} from '@nestjs/core'
-import {AppModule} from './app.module'
-import {NestExpressApplication} from '@nestjs/platform-express'
-import {DocumentBuilder, SwaggerModule} from '@nestjs/swagger'
-import {Logger} from '@nestjs/common'
+import { HttpAdapterHost, NestFactory } from '@nestjs/core'
+import { AppModule } from './app.module'
+import { NestExpressApplication } from '@nestjs/platform-express'
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
+import { Logger } from '@nestjs/common'
 import * as morgan from 'morgan'
-import {corsOptions} from './core/utils/corsOptions'
-import {ValidationPipe} from './core/pipes/validation.pipe'
-import {AllExceptionsFilter} from './core/exceptions/all-exceptions-filter'
+import { corsOptions } from './core/utils/corsOptions'
+import { ValidationPipe } from './core/pipes/validation.pipe'
+import { AllExceptionsFilter } from './core/exceptions/all-exceptions-filter'
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT

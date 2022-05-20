@@ -1,5 +1,5 @@
-import {writeFileSync} from 'fs'
-import {format} from 'date-fns'
+import { writeFileSync } from 'fs'
+import { format } from 'date-fns'
 
 export const customWriteLog = (writeObject: string) => {
   const d = new Date(),
