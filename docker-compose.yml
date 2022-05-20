@@ -1,0 +1,59 @@
+version: '3.7'
+
+services:
+
+  redis:
+    image: redis
+    ports:
+      - 17381:6379
+
+  db:
+    image: postgres:14
+    environment:
+      - POSTGRES_USER=${DATABASE_USERNAME}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_DATABASE}
+    command: ["postgres", "-c", "log_statement=all"]
+    volumes:
+      - server_db_data:/var/lib/postgresql/data
+    restart: always
+    ports:
+      - 16433:5432
+    networks:
+      - default
+      - serverdb
+
+  server:
+    build:
+      context: .
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - .:/app
+    ports:
+      - '7005:7005'
+    networks:
+      - default
+      - serverdb
+
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    environment:
+      - VIRTUAL_HOST=node-api.dev.local
+    networks:
+      - default
+      - outside
+
+volumes:
+  server_db_data:
+
+networks:
+  serverdb:
+    name: serverdb
+    external: true
+  outside:
+    external: true
+    name: nginx-proxy
