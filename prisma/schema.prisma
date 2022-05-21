@@ -19,3 +19,22 @@ model User {
 
   @@map("users")
 }
+
+model Device {
+  id              Int          @id @default(autoincrement())
+  title           String
+  description     String?
+  manufacturer_id Int
+  manufacturer    Manufacturer @relation(fields: [manufacturer_id], references: [id])
+
+  @@map("device")
+}
+
+model Manufacturer {
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String?
+
+  Device Device[]
+  @@map("manufacturers")
+}

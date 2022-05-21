@@ -35,7 +35,7 @@ async function start() {
   SwaggerModule.setup('api/docs', app, document)
 
   await app.listen(PORT, HOST)
-  logger.log(`Server start on host = ${HOST}, port = ${PORT}`)
+  logger.log(`Server start on host = ${HOST}, port = ${PORT}, ${await app.getUrl()}`)
 }
 
 start().catch(err => console.log(`Server err: ${err}`))
