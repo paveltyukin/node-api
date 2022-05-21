@@ -1,7 +1,7 @@
 import { Query, Resolver } from '@nestjs/graphql'
-import { Manufacturer } from '../manufacturer'
+import { Manufacturer } from './manufacturer'
 import { Inject } from '@nestjs/common'
-import { PrismaService } from '../../../prisma/prisma.service'
+import { PrismaService } from '../../prisma/prisma.service'
 
 @Resolver()
 export class ManufacturerResolver {

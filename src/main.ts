@@ -7,6 +7,7 @@ import * as morgan from 'morgan'
 import { corsOptions } from './core/utils/corsOptions'
 import { ValidationPipe } from './core/pipes/validation.pipe'
 import { AllExceptionsFilter } from './core/exceptions/all-exceptions-filter'
+import { PrismaService } from '../prisma/prisma.service'
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT
@@ -18,6 +19,9 @@ async function start() {
 
   const logger = app.get(Logger)
   app.use(morgan(process.env.MORGAN_ENV))
+
+  const prismaService = app.get(PrismaService)
+  await prismaService.enableShutdownHooks(app)
 
   app.enableCors(corsOptions)
 
@@ -35,7 +39,11 @@ async function start() {
   SwaggerModule.setup('api/docs', app, document)
 
   await app.listen(PORT, HOST)
-  logger.log(`Server start on host = ${HOST}, port = ${PORT}, ${await app.getUrl()}`)
+  logger.log(`
+Server start on host = ${HOST}, port = ${PORT}, ${await app.getUrl()}
+🚀 Server ready at: http://localhost:3000/graphql
+⭐️ See sample queries: http://pris.ly/e/ts/graphql-nestjs#using-the-graphql-api
+`)
 }
 
 start().catch(err => console.log(`Server err: ${err}`))

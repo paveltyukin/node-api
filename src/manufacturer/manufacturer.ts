@@ -5,7 +5,7 @@ export class Manufacturer {
   @Field(() => ID)
   id: number
 
-  @Field({ nullable: true })
+  @Field()
   title: string
 
   @Field({ nullable: true })
