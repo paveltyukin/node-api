@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config'
 import { GraphQLModule } from '@nestjs/graphql'
 import { PrismaService } from '../prisma/prisma.service'
 import { ManufacturerModule } from './manufacturer/manufacturer.module'
+import { DeviceModule } from './device/device.module'
 
 @Module({
   imports: [
@@ -11,10 +12,11 @@ import { ManufacturerModule } from './manufacturer/manufacturer.module'
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql',
-      debug: true,
+      debug: false,
       playground: true,
     }),
     ManufacturerModule,
+    DeviceModule,
   ],
   controllers: [],
   providers: [Logger, PrismaService],

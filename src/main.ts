@@ -8,6 +8,7 @@ import { corsOptions } from './core/utils/corsOptions'
 import { ValidationPipe } from './core/pipes/validation.pipe'
 import { AllExceptionsFilter } from './core/exceptions/all-exceptions-filter'
 import { PrismaService } from '../prisma/prisma.service'
+import { join } from 'path'
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT
@@ -29,20 +30,25 @@ async function start() {
   const adapterHost = app.get(HttpAdapterHost)
   app.useGlobalFilters(new AllExceptionsFilter(adapterHost))
 
+  app.useStaticAssets(join(__dirname, '..', '..', 'public'))
+  app.setBaseViewsDir(join(__dirname, '..', '..', 'pages'))
+  app.setViewEngine('ejs')
+
   const config = new DocumentBuilder()
     .setTitle('Node API')
     .setDescription('REST API')
     .setVersion('1.0')
     .addTag('api')
     .build()
+
   const document = SwaggerModule.createDocument(app, config)
   SwaggerModule.setup('api/docs', app, document)
 
   await app.listen(PORT, HOST)
   logger.log(`
-Server start on host = ${HOST}, port = ${PORT}, ${await app.getUrl()}
-🚀 Server ready at: http://localhost:3000/graphql
-⭐️ See sample queries: http://pris.ly/e/ts/graphql-nestjs#using-the-graphql-api
+Server start on host = ${HOST}, port = ${PORT}
+🚀 Graphql server ready at: ${await app.getUrl()}/graphql
+⭐️ server ready at: ${await app.getUrl()}
 `)
 }
 

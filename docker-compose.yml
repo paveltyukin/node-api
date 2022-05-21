@@ -10,9 +10,9 @@ services:
   db:
     image: postgres:14
     environment:
-      - POSTGRES_USER=${DATABASE_USERNAME}
-      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
-      - POSTGRES_DB=${DATABASE_DATABASE}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
     command: ["postgres", "-c", "log_statement=all"]
     volumes:
       - server_db_data:/var/lib/postgresql/data
@@ -46,6 +46,8 @@ services:
     networks:
       - default
       - outside
+    depends_on:
+      - server
 
 volumes:
   server_db_data:
