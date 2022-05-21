@@ -1,14 +1,13 @@
 import { Query, Resolver } from '@nestjs/graphql'
 import { Manufacturer } from './manufacturer'
-import { Inject } from '@nestjs/common'
-import { PrismaService } from '../../prisma/prisma.service'
+import { ManufacturerRepository } from './manufacturer.repository'
 
 @Resolver()
 export class ManufacturerResolver {
-  constructor(@Inject(PrismaService) private prisma: PrismaService) {}
+  constructor(private manufacturerRepository: ManufacturerRepository) {}
 
   @Query(() => [Manufacturer], { nullable: true })
-  async getAllManufacturers() {
-    return this.prisma.manufacturer.findMany()
+  async getAllManufacturers(): Promise<Manufacturer[]> {
+    return this.manufacturerRepository.getAllManufacturers()
   }
 }

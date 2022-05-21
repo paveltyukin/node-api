@@ -27,7 +27,7 @@ model Device {
   manufacturer_id Int
   manufacturer    Manufacturer @relation(fields: [manufacturer_id], references: [id])
 
-  @@map("device")
+  @@map("devices")
 }
 
 model Manufacturer {
