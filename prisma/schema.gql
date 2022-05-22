@@ -26,5 +26,7 @@ type Device {
 type Query {
   getAllUsers: [User!]
   getAllManufacturers: [Manufacturer!]
+  searchManufacturers(search: String!): [Manufacturer!]
   getAllDevices: [Device!]
+  searchDevices(search: String!, manufacturer_id: Float): [Device!]
 }
