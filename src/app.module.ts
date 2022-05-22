@@ -3,9 +3,10 @@ import { Logger, Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { GraphQLModule } from '@nestjs/graphql'
 import { PrismaService } from '../prisma/prisma.service'
+import { join } from 'path'
+import { UserModule } from './user/user.module'
 import { ManufacturerModule } from './manufacturer/manufacturer.module'
 import { DeviceModule } from './device/device.module'
-import { join } from 'path'
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { join } from 'path'
       debug: true,
       playground: true,
     }),
+    UserModule,
     ManufacturerModule,
     DeviceModule,
   ],

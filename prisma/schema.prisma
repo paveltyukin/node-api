@@ -35,6 +35,6 @@ model Manufacturer {
   title       String
   description String?
 
-  Device Device[]
+  device Device[]
   @@map("manufacturers")
 }
