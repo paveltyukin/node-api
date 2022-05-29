@@ -30,7 +30,7 @@ services:
       - db
       - redis
     volumes:
-      - .:/app
+      - .:/app:cached
     ports:
       - '7005:7005'
     networks:
