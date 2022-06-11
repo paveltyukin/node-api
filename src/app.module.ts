@@ -4,9 +4,9 @@ import { ConfigModule } from '@nestjs/config'
 import { GraphQLModule } from '@nestjs/graphql'
 import { PrismaService } from '../prisma/prisma.service'
 import { join } from 'path'
-import { UserModule } from './user/user.module'
-import { ManufacturerModule } from './manufacturer/manufacturer.module'
-import { DeviceModule } from './device/device.module'
+import { UserModule } from './modules/user/user.module'
+import { ManufacturerModule } from './modules/manufacturer/manufacturer.module'
+import { DeviceModule } from './modules/device/device.module'
 
 @Module({
   imports: [

@@ -1,7 +1,7 @@
 import { Args, Query, Resolver } from '@nestjs/graphql'
 import { Device } from './device'
 import { Inject } from '@nestjs/common'
-import { PrismaService } from '../../prisma/prisma.service'
+import { PrismaService } from '../../../prisma/prisma.service'
 import { SearchDeviceArgs } from './dto/search-device.args'
 
 @Resolver(() => Device)
