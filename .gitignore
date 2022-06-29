@@ -3,3 +3,4 @@ node_modules/
 dist/
 custom_logs/
 .env
+yarn-error.log

@@ -21,6 +21,17 @@ model User {
   @@map("users")
 }
 
+model Client {
+  id                      Int    @id @default(autoincrement())
+  secret                  String
+  web_server_redirect_uri String
+  scope                   String
+  response_type           String
+  authorized_grant_types  String
+
+  @@map("clients")
+}
+
 model Token {
   id           Int      @id @default(autoincrement())
   userId       Int      @map("user_id")

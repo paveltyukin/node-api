@@ -1,14 +1,11 @@
-import { HttpAdapterHost, NestFactory } from '@nestjs/core'
+import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import { NestExpressApplication } from '@nestjs/platform-express'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { Logger } from '@nestjs/common'
 import * as morgan from 'morgan'
 import { corsOptions } from './core/utils/corsOptions'
-import { ValidationPipe } from './core/pipes/validation.pipe'
-import { AllExceptionsFilter } from './core/exceptions/all-exceptions-filter'
-import { PrismaService } from '../prisma/prisma.service'
-import { join } from 'path'
+import { PrismaService } from './core/prisma/prisma.service'
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT
@@ -26,13 +23,15 @@ async function start() {
 
   app.enableCors(corsOptions)
 
-  app.useGlobalPipes(new ValidationPipe())
-  const adapterHost = app.get(HttpAdapterHost)
-  app.useGlobalFilters(new AllExceptionsFilter(adapterHost))
+  // app.useGlobalPipes(new ValidationPipe())
+  // const adapterHost = app.get(HttpAdapterHost)
+  // app.useGlobalFilters(new AllExceptionsFilter(adapterHost))
 
-  app.useStaticAssets(join(__dirname, '..', '..', 'public'))
-  app.setBaseViewsDir(join(__dirname, '..', '..', 'pages'))
-  app.setViewEngine('ejs')
+  // app.useStaticAssets(join(__dirname, '..', 'public'))
+  // app.setBaseViewsDir(join(__dirname, '..', 'pages'))
+  // app.setViewEngine('ejs')
+
+  app.setGlobalPrefix('api')
 
   const config = new DocumentBuilder()
     .setTitle('Node API')

@@ -1,7 +1,7 @@
 import { Query, Resolver } from '@nestjs/graphql'
 import { Device } from './device'
 import { Inject } from '@nestjs/common'
-import { PrismaService } from '../../prisma/prisma.service'
+import { PrismaService } from '../../core/prisma/prisma.service'
 
 @Resolver(() => Device)
 export class DeviceResolver {

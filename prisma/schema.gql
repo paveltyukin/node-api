@@ -1,0 +1,30 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: ID!
+  guid: String!
+  name: String!
+  surname: String!
+  patronymic: String!
+}
+
+type Manufacturer {
+  id: ID!
+  title: String!
+  description: String
+}
+
+type Device {
+  id: ID!
+  title: String
+  description: String
+  manufacturer_id: Float!
+}
+
+type Query {
+  getAllUsers: [User!]
+  getAllManufacturers: [Manufacturer!]
+  getAllDevices: [Device!]
+}
